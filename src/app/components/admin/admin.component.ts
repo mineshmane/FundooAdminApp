@@ -17,11 +17,16 @@ export class AdminComponent implements OnInit {
   }
   answerArray = [];
   getAllUnApprovedQuestion() {
+    console.log(" called");
+
     this.adminService.getUnapprovedQuestion().subscribe(data => {
+      console.log(" called");
+      
       console.log(data['data']);
       this.answerArray = data['data'];
-      console.log(" questions in admin unaprroved", this.answerArray);
-
+    
+      // console.log(" questions in admin unaprroved", this.answerArray);
+      this.answerArray.reverse();
 
     }, err => {
       console.log(err);

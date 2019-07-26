@@ -25,7 +25,7 @@ export class AdminComponent implements OnInit {
       console.log(data['data']);
       this.answerArray = data['data'];
     
-      // console.log(" questions in admin unaprroved", this.answerArray);
+       console.log(" questions in admin unaprroved", this.answerArray);
       this.answerArray.reverse();
 
     }, err => {

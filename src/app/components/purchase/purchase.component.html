@@ -1,3 +1,162 @@
-<p>
-  purchase works!
-</p>
+
+  <!-- <div class="main">
+  
+    <div class="card" *ngFor="let index of answerArray">
+      <div class="card-body">
+        <h5 class="card-title">Answer </h5>
+  <div innerHTML={{index.message}}></div>
+  
+  <form class="form-inline my-2 my-lg-0">
+    <button class="btn btn-outline-info mr-2 my-2 my-sm-0" type="button"(click)="approveAnswer(index)">Approve Answer</button>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="rejectAnswer(index)">Reject Answer</button>
+  </form>
+      </div>
+    </div>
+  
+  </div> -->
+  
+
+  <!-- <div class="card-body"  *ngFor=" let product of orderList; index as i ">
+    <h5 class="card-title"> &nbsp; Product Detail</h5>
+    <hr class="my-4">
+    <div class="d-flex flex-row flex-wrap   justify-content-around bd-highlight mb-3 product">
+      <div class="p-2 bd-highlight">
+        <div class="head">
+          Product Name
+        </div>
+        <div>
+          {{product.product.name}}
+        </div>
+
+      </div>
+
+      <div class="p-2 bd-highlight">
+        <div class="head">
+          Price
+        </div>
+        <div>
+          ${{product.price}}
+        </div>
+
+      </div>
+      <div class="p-2 bd-highlight">
+        <div class="head">
+          Order Date
+        </div>
+        <div>
+          {{product.createdDate}}
+        </div>
+
+      </div>
+      <div class="p-2 bd-highlight">
+        <div class="head">
+          Payment Mode
+        </div>
+        <div>
+          Cash On Delivery
+        </div>
+
+      </div>
+      <div class="p-2 bd-highlight">
+        <div class="head">
+          Delivery Address
+        </div>
+        <div *ngIf="product.user !=undefined">
+          {{product.user.addresses[0].address}}
+        </div>
+        <div *ngIf="product.user ==undefined">
+            No address
+          </div>
+
+      </div>
+
+    </div>
+
+
+
+
+    <div *ngIf="product.user !=undefined" class="row userDetail">
+        <div class="col">
+            <div>
+                <h5 class="card-title">User Detail</h5>
+              </div>
+            <div class="card card-body">
+              <div class="d-flex flex-row flex-wrap   justify-content-start bd-highlight mb-3" *ngIf="product.user !=undefined">
+                  <div class="p-2 bd-highlight userName">
+                    <div class="head">
+                      User Name
+                    </div>
+                    <div >
+                  
+                      {{product.user.firstName}} &nbsp; {{product.user.lastName}}
+                    </div>
+            
+                  </div>
+            
+                  <div class="p-2 bd-highlight userEmail">
+                    <div class="head">
+                      Email
+                    </div>
+                    <div>
+                        {{product.user.email}}
+                      
+                    </div>
+            
+                  </div>
+                </div>
+            
+            </div>
+        </div>
+    
+      </div>
+    </div> -->
+
+
+
+
+
+
+    <!-- printing the table data -->
+<div class="card">
+  <!-- <input type="text" style="widows: 60%; " id="myInput" [(value)]="values" (keyup)="onKeyUp($event)" placeholder="Search for names.."
+    title="Type in a name" class="container-fluid"> -->
+  <div class="table-responsive-xl fi tablediv">
+    <table class="table table-hover " >
+      <caption>List of users</caption>
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">FirstName</th>      
+          <th scope="col">LastName</th>
+          <th scope="col">Email</th>
+          <th scope="col">Product</th>
+          <th scope="col">Price</th>
+          <th scope="col">address</th>
+          <th scope="col">paymentMode</th>
+          <th scope="col">Accept</th>
+          <th scope="col">Reject</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let el of orderList  let i = index " >
+          <th scope="row">{{i+1}}</th>
+          <td>{{el.user.firstName}}</td>
+          <td>{{el.user.lastName}}</td>
+          <td>{{el.user.email}}</td>
+          <td>{{el.user.service}}</td>
+          <td>{{el.product.price}}</td>
+          <td>{{el.user.addresses[0].address}}</td>
+          <td>{{el.user.service}}</td>
+          <td><button class="btn btn-success" (click)="acceptOrder(el)">Accept</button></td>
+          <td><button class="btn btn-danger" (click)="rejectOrder(el)">Reject</button></td>
+        </tr>
+      </tbody>
+     
+    </table>
+    
+  </div>
+  <!-- <div fxLayoutAlign="center" style="margin-left: 30%">
+    <div> <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls></div>
+     
+    </div> -->
+</div>

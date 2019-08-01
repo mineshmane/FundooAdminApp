@@ -22,15 +22,15 @@ export class HttpService {
 
   getHttp(url, token) {
 
-    // if (token) {
+     if (token) {
       const httpOption = {
         headers: new HttpHeaders({
           'Authorization': localStorage.getItem('admintoken')
         })
       }
       return this.http.get(this.baseUrl + url, httpOption);
-    // }
- //   return (this.http.get(this.baseUrl + url));
+     }
+   return (this.http.get(this.baseUrl + url));
 
   }
 

@@ -1,0 +1,97 @@
+// @import "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css";
+// @import "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css";
+.navbar-brand {
+    // font-weight: normal;
+    .f {
+        color: #3b86ff;
+    }
+    .u {
+        color: #e60000;
+    }
+    .n {
+        color: #e6ac00;
+    }
+    .d {
+        color: #3b86ff;
+    }
+    .o {
+        color: #00cc00;
+    }
+    .o1 {
+        color: #e60000;
+    }
+}
+
+#myInput {
+    // background-image: url('../../../assets/image/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 80%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+.mainCard {
+    position: relative;
+    margin-top: 60px;
+}
+
+.card {
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+.advance:hover {
+    width: 105%;
+    height: auto;
+}
+
+.basic:hover {
+    width: 105%;
+    height: auto;
+}
+
+table {
+    table-layout: fixed;
+}
+
+.tablediv {
+    // width: 100%;
+    border: 2px solid;
+    overflow-x: hidden;
+    /* overflow-y:au;  */
+}
+
+.tablediv::-webkit-scrollbar {
+    width: 10px;
+}
+
+// .tablediv::-webkit-scrollbar-thumb{
+//     border-radius: 5px;
+//     background:rgba(0,0,0,-1);
+// }
+// table{
+// tbody{
+//     height:200px;
+//     overflow-x:auto;
+//     width: 100%;
+//     }
+//   thead,tbody,tr,td,th{
+//     // display:block;
+//   }
+// }
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+    bottom: .5em;
+}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminServiceService } from '../../services/admin/admin-service.service';
 import { Router } from '@angular/router';
-
+declare var $: any;
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -18,45 +18,89 @@ export class AdminComponent implements OnInit {
   answerArray = [];
   getAllUnApprovedQuestion() {
     console.log(" called");
+    $.ajax({
+      url: "http://34.213.106.173/api/questionAndAnswerNotes/getUnApprovedAnswer",
+      type: "get",
+      dataType: "json",
+      headers: {
+        'Authorization': localStorage.getItem('admintoken')
+      },
+      contentType: 'application/json; charset=utf-8',
+      success: (data: any) => {
+        console.log('data is', data);
+        this.answerArray = data['data'];
+        this.answerArray.reverse();
 
-    this.adminService.getUnapprovedQuestion().subscribe(data => {
-      console.log(" called");
-      
-      console.log(data['data']);
-      this.answerArray = data['data'];
-    
-       console.log(" questions in admin unaprroved", this.answerArray);
-      this.answerArray.reverse();
 
-    }, err => {
-      console.log(err);
+      },
+      error: (textStatus, ) => {
+        console.log('error data ', textStatus);
+      },
 
-    })
+
+    });
+
+
+
+
+
   }
 
   approveAnswer(index) {
     this.removeFromArray(index)
 
-    this.adminService.approveAnswer(index.id).subscribe(data => {
-      console.log(data);
 
-    }, err => {
-      console.log(err);
+    $.ajax({
+      url: "http://34.213.106.173/api/questionAndAnswerNotes/approve/" + index.id,
+      type: "post",
+      dataType: "json",
+      headers: {
+        'Authorization': localStorage.getItem('admintoken')
+      },
+      data: JSON.stringify({
+        id: index.id
+      }),
+      contentType: 'application/json; charset=utf-8',
+      success: (data: any) => {
+        console.log('data is', data);
 
-    })
+
+      },
+      error: (textStatus) => {
+        console.log('error data ', textStatus);
+      },
+
+
+    });
+
   }
 
 
   rejectAnswer(index) {
-    this.removeFromArray(index)
-    this.adminService.rejectAnswer(index.id).subscribe(data => {
-      console.log(data);
 
 
-    }, error => {
-      console.log(error);
+    $.ajax({
+      url: "http://34.213.106.173/api/questionAndAnswerNotes/reject/" + index.id,
+      type: "post",
+      dataType: "json",
+      headers: {
+        'Authorization': localStorage.getItem('admintoken')
+      },
+      data: JSON.stringify({
+        id: index.id
+      }),
+      contentType: 'application/json; charset=utf-8',
+      success: (data: any) => {
+        console.log('data is', data);
+        this.removeFromArray(index)
 
-    })
+      },
+      error: (error) => {
+        console.log('error data ', error);
+      },
+
+
+    });
   }
 
 

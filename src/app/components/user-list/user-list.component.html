@@ -1,76 +1,71 @@
 <!-- showing the basic and advance user -->
 <div class="row text-center justify-content-center mainCard">
-  <!-- <button>Click to fade in boxes</button><br><br> -->
+    <!-- <button>Click to fade in boxes</button><br><br> -->
 
 
 
-  <div  class="col-sm-4 col-lg-3 ">
-    <div style="background-color: wheat;" class="card text-center  advance">
-      <div class="card-header">
-        <h4>Advance User</h4>
-      </div>
-      <div class="card-body">
+    <div class="col-sm-4 col-lg-3 ">
+        <div style="background-color: wheat;" class="card text-center  advance">
+            <div class="card-header">
+                <h4>Advance User</h4>
+            </div>
+            <div class="card-body">
 
-        <p class="card-text">{{advance}}</p>
-        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-      </div>
+                <p class="card-text">{{advance}}</p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="col-sm-4 col-lg-3 ">
-    <div style="background-color: wheat;" class="card basic">
-      <div class="card-header">
-        <h4>Basic User</h4>
-      </div>
-      <div class="card-body">
-        <p class="card-text">{{basic}}</p>
-        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-      </div>
+    <div class="col-sm-4 col-lg-3 ">
+        <div style="background-color: wheat;" class="card basic">
+            <div class="card-header">
+                <h4>Basic User</h4>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{basic}}</p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- printing the table data -->
 <div class="card">
-  <input type="text" style="widows: 60%; " id="myInput" [(value)]="values" (keyup)="onKeyUp($event)" placeholder="Search for names.."
-    title="Type in a name" class="container-fluid">
-  <div class="table-responsive-xl fi tablediv">
-    <table class="table table-hover " >
-      <caption>List of users</caption>
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">FirstName</th>
-          <!-- <th>
+    <input type="text" style="widows: 60%; " id="myInput" [(value)]="values" (keyup)="onKeyUp($event)" placeholder="Search for names.." title="Type in a name" class="container-fluid">
+    <div class="table-responsive-xl fi tablediv">
+        <table class="table table-hover ">
+            <caption>List of users</caption>
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">FirstName</th>
+                    <!-- <th>
             <mfDefaultSorter by="name">FirstName</mfDefaultSorter>
           </th> -->
 
-          <th scope="col">LastName</th>
-          <th scope="col">Email</th>
-          <th scope="col">Service</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let el of array | paginate: config; let i = index " >
-          <th scope="row">{{i+1}}</th>
-          <td>{{el.firstName}}</td>
-          <td>{{el.lastName}}</td>
-          <td>{{el.email}}</td>
-          <td>{{el.service}}</td>
-        </tr>
+                    <th scope="col">LastName</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Service</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let el of array | paginate: config; let i = index ">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{el.firstName}}</td>
+                    <td>{{el.lastName}}</td>
+                    <td>{{el.email}}</td>
+                    <td>{{el.service}}</td>
+                </tr>
 
-      </tbody>
-      <!-- <tfoot>
-          <tr>
-              <td colspan="4">
-                  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-              </td>
-          </tr>
-          </tfoot> -->
-    </table>
-    
-  </div>
-  <div fxLayoutAlign="center" style="margin-left: 30%">
-    <div> <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls></div>
-     
+            </tbody>
+
+        </table>
+
+    </div>
+    <div fxLayoutAlign="center" style="margin-left: 30%">
+        <div>
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+        </div>
+
     </div>
 </div>

@@ -15,6 +15,7 @@ export class UserListComponent implements OnInit {
   basic = 0; advance = 0; preBasic = 0; preAdvance = 0; char = '';
   array = []; mainArray = []; pre = '';
   count = this.array.length
+  getErrorMessageserver: string;
 
   constructor(private httpService: HttpService, private router: Router, private dataService: AdminServiceService) {
 
@@ -27,31 +28,6 @@ export class UserListComponent implements OnInit {
   }
   public ngOnInit() {
     this.getUserList();
-
-    // $(document).ready(function () {
-    //   $('#dtBasicExample').DataTable();
-    //   $('.dataTables_length').addClass('bs-select');
-    //   });
-
-    // $(document).ready(function () {
-    //   $("#hide").click(function () {
-    //     $(".advance").fadeToggle("fast");
-    //     $(".basic").fadeToggle("fast");
-
-    //   });
-    // });
-
-    // this.dataService.currentMessage.subscribe(message => {
-    //   console.log("data in on change", message);
-    //   if(message.type=='search'){
-    //     this.values = message.data
-    //   //  this.card = this.findCard(this.allnotes, this.value)
-    //    // console.log("searched cards", this.card);
-
-    //   }
-
-
-    // })
   }
   values: any = '';
   // values=this.value;
@@ -97,24 +73,60 @@ export class UserListComponent implements OnInit {
     try {
 
 
-      this.httpService.getRequest('user/getAdminUserList').subscribe(data => {
-        this.mainArray = data['data']['data'];
-        this.array = this.mainArray;
-        console.log(this.array);
-        for (var i = 0; i < this.array.length; i++) {
-          this.char = this.array[i].service;
-          if (this.char == 'basic' || this.char == 'Basic' || this.char == 'BASIC') {
-            this.basic++;
-          } else {
-            this.advance++;
+
+
+      $.ajax({
+        url: "http://34.213.106.173/api/user/getAdminUserList",
+        type: "get",
+        dataType: "json",
+        data: JSON.stringify({
+         admintoken:localStorage.getItem('admintoken')
+        }),
+        contentType: 'application/json; charset=utf-8',
+        success: (data: any) => {
+          console.log( 'data is', data);
+          this.mainArray = data['data']['data'];
+          this.array = this.mainArray;
+          this.array.reverse();
+          for (var i = 0; i < this.array.length; i++) {
+            this.char = this.array[i].service;
+            if (this.char == 'basic' || this.char == 'Basic' || this.char == 'BASIC') {
+              this.basic++;
+            } else {
+              this.advance++;
+            }
           }
-        }
-        console.log('basic user is ', this.basic, ' advane user is', this.advance);
+          console.log('basic user is ', this.basic, ' advane user is', this.advance);
+          // localStorage.setItem('admintoken', data['id']);
+          // this.router.navigate(['home'])
+
+        },
+        error: (jqXHR, textStatus, errorThrown) => {
+          this.getErrorMessageserver = "unAuthorized User";
+          console.log('error data ', textStatus);
+        },
 
 
-      }, err => {
-        console.log('error in get user list');
       });
+
+      // this.httpService.getRequest('user/getAdminUserList').subscribe(data => {
+      //   this.mainArray = data['data']['data'];
+      //   this.array = this.mainArray;
+      //   console.log(this.array);
+      //   for (var i = 0; i < this.array.length; i++) {
+      //     this.char = this.array[i].service;
+      //     if (this.char == 'basic' || this.char == 'Basic' || this.char == 'BASIC') {
+      //       this.basic++;
+      //     } else {
+      //       this.advance++;
+      //     }
+      //   }
+      //   console.log('basic user is ', this.basic, ' advane user is', this.advance);
+
+
+      // }, err => {
+      //   console.log('error in get user list');
+      // });
     } catch (error) {
       console.log('error in dashboard');
     }

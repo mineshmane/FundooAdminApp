@@ -36,9 +36,9 @@
 
 
 <div class="bs-example">
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="background-color: #ddeeff;">
-    <a routerLink="home" class="navbar-brand">
-        <span class="navbar-brand" >
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="background-color: #ddeeff;">
+        <a class="navbar-brand">
+            <span class="navbar-brand">
             <span class="f">F</span>
             <span class="u">u</span>
             <span class="n">n</span>
@@ -50,39 +50,39 @@
             <span class="n">m</span>
             <span class="d">i</span>
             <span class="o">n</span>
-          </span>
-    </a>
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            </span>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" routerLink="admin">admin</a>
-        <a class="nav-item nav-link" routerLink="userList">user-List</a>
-        <a class="nav-item nav-link" routerLink="purchase">purchase</a>
-        <div class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Messages</a>
-          <div class="dropdown-menu">
-            <a href="#" class="dropdown-item">Inbox</a>
-            <a href="#" class="dropdown-item">Sent</a>
-            <a href="#" class="dropdown-item">Drafts</a>
-          </div>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" routerLink="admin">admin</a>
+                <a class="nav-item nav-link" routerLink="userList">user-List</a>
+                <a class="nav-item nav-link" routerLink="purchase">purchase</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Messages</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">Inbox</a>
+                        <a href="#" class="dropdown-item">Sent</a>
+                        <a href="#" class="dropdown-item">Drafts</a>
+                    </div>
+                </div>
+            </div>
+            <form class="form-inline">
+                <div class="input-group">
+                    <input type="text" class="form-control" [(value)]="values" (keyup)="onKeyUp($event)" placeholder="Search">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            <div class="navbar-nav">
+                <a href="#" class="nav-item nav-link">LogOut</a>
+            </div>
         </div>
-      </div>
-      <form class="form-inline">
-        <div class="input-group">
-          <input type="text" class="form-control" [(value)]="values" (keyup)="onKeyUp($event)" placeholder="Search">
-          <div class="input-group-append">
-            <button type="button" class="btn btn-secondary"><i class="fa fa-search"></i></button>
-          </div>
-        </div>
-      </form>
-      <div class="navbar-nav">
-        <a href="#" class="nav-item nav-link">LogOut</a>
-      </div>
-    </div>
-  </nav>
+    </nav>
 </div>
 
 

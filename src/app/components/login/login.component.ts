@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { environment } from '../../../environments/environment'
 import { Router } from '@angular/router'
 import * as $ from 'jquery'
 @Component({
@@ -10,6 +11,7 @@ import * as $ from 'jquery'
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   getErrorMessageserver = '';
+  baseurl = environment.baseUrl;
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -32,7 +34,7 @@ export class LoginComponent implements OnInit {
     try {
       // using ajax jquery
       $.ajax({
-        url: "http://34.213.106.173/api/user/adminLogin",
+        url: this.baseurl + "user/adminLogin",
         type: "post",
         dataType: "json",
         data: JSON.stringify({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminServiceService } from '../../services/admin/admin-service.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment'
 declare var $: any;
 @Component({
   selector: 'app-admin',
@@ -8,9 +8,9 @@ declare var $: any;
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  baseUrl = environment.baseUrl;
 
-
-  constructor(private adminService: AdminServiceService, private router: Router) { }
+  constructor( private router: Router) { }
 
   ngOnInit() {
     this.getAllUnApprovedQuestion();
@@ -19,7 +19,7 @@ export class AdminComponent implements OnInit {
   getAllUnApprovedQuestion() {
     console.log(" called");
     $.ajax({
-      url: "http://34.213.106.173/api/questionAndAnswerNotes/getUnApprovedAnswer",
+      url: this.baseUrl + "questionAndAnswerNotes/getUnApprovedAnswer",
       type: "get",
       dataType: "json",
       headers: {
@@ -51,7 +51,7 @@ export class AdminComponent implements OnInit {
 
 
     $.ajax({
-      url: "http://34.213.106.173/api/questionAndAnswerNotes/approve/" + index.id,
+      url:this.baseUrl+ "questionAndAnswerNotes/approve/" + index.id,
       type: "post",
       dataType: "json",
       headers: {
@@ -80,7 +80,7 @@ export class AdminComponent implements OnInit {
 
 
     $.ajax({
-      url: "http://34.213.106.173/api/questionAndAnswerNotes/reject/" + index.id,
+      url:this.baseUrl+"questionAndAnswerNotes/reject/" + index.id,
       type: "post",
       dataType: "json",
       headers: {

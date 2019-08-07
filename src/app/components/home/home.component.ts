@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
-import { AdminServiceService } from '../../services/admin/admin-service.service'
+import { AdminServiceService } from '../../services/admin/admin-service.service';
+import { environment } from '../../../environments/environment'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,7 +10,7 @@ import { AdminServiceService } from '../../services/admin/admin-service.service'
 export class HomeComponent implements OnInit {
   basic = 0; advance = 0; preBasic = 0; preAdvance = 0; char = '';
   array = []; mainArray = []; pre = '';
-
+  baseUrl = environment.baseUrl;
   constructor(private router: Router, private dataService: AdminServiceService) { }
 
   ngOnInit() {
@@ -19,12 +20,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['login'])
   }
 
-  showUnapproved() {
-    this.router.navigate(['unApproved']);
-  }
-  goToOrder() {
-    this.router.navigate(['order'])
-  }
+  
   values: any = '';
   // values=this.value;
 
@@ -41,36 +37,36 @@ export class HomeComponent implements OnInit {
 
   }
 
-  //when user hit in search button it works
-  onKeyUp(event: any) {
-    //storing value in previous
-    this.pre = this.values;
-    this.values = event.target.value;
-    if (this.values.length < this.pre.length) {//when user hit back space
-      this.array = this.mainArray;
-    }
-    //method for name filtering
-    var checkName = (item: any) => {
-      // console.log('item ',item.firstName.toLowerCase(),'  value ',this.values.toLowerCase())
-      return item.firstName.toLowerCase().startsWith(this.values.toLowerCase());
-    }
-    //array filter
-    this.array = this.array.filter(function (item) {
-      // console.log('item',item);
-      return checkName(item);
-    });
-    console.log(this.array);
+  // //when user hit in search button it works
+  // onKeyUp(event: any) {
+  //   //storing value in previous
+  //   this.pre = this.values;
+  //   this.values = event.target.value;
+  //   if (this.values.length < this.pre.length) {//when user hit back space
+  //     this.array = this.mainArray;
+  //   }
+  //   //method for name filtering
+  //   var checkName = (item: any) => {
+  //     // console.log('item ',item.firstName.toLowerCase(),'  value ',this.values.toLowerCase())
+  //     return item.firstName.toLowerCase().startsWith(this.values.toLowerCase());
+  //   }
+  //   //array filter
+  //   this.array = this.array.filter(function (item) {
+  //     // console.log('item',item);
+  //     return checkName(item);
+  //   });
+  //   console.log(this.array);
 
-    for (var i = 0; i < this.array.length; i++) {
-      this.char = this.array[i].service;
-      if (this.char == 'basic' || this.char == 'Basic' || this.char == 'BASIC') {
-        this.preBasic++;
-      } else {
-        this.preAdvance++;
-      }
-    }
-    this.basic = this.preBasic, this.advance = this.preAdvance;
-    this.preBasic = 0, this.preAdvance = 0;
+  //   for (var i = 0; i < this.array.length; i++) {
+  //     this.char = this.array[i].service;
+  //     if (this.char == 'basic' || this.char == 'Basic' || this.char == 'BASIC') {
+  //       this.preBasic++;
+  //     } else {
+  //       this.preAdvance++;
+  //     }
+  //   }
+  //   this.basic = this.preBasic, this.advance = this.preAdvance;
+  //   this.preBasic = 0, this.preAdvance = 0;
 
-  };
+  // };
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../services/httpService/http.service';
 import { Router } from '@angular/router'
-import { AdminServiceService } from '../../services/admin/admin-service.service'
+import { environment } from '../../../environments/environment'
 declare var $: any;
 @Component({
   selector: 'app-user-list',
@@ -10,14 +9,14 @@ declare var $: any;
 })
 export class UserListComponent implements OnInit {
 
-
+  baseUrl = environment.baseUrl;
 
   basic = 0; advance = 0; preBasic = 0; preAdvance = 0; char = '';
   array = []; mainArray = []; pre = '';
   count = this.array.length
   getErrorMessageserver: string;
 
-  constructor(private httpService: HttpService, private router: Router, private dataService: AdminServiceService) {
+  constructor( private router: Router) {
 
 
     this.config = {
@@ -71,23 +70,19 @@ export class UserListComponent implements OnInit {
 
   getUserList() {
     try {
-
-
-
-
       $.ajax({
-        url: "http://34.213.106.173/api/user/getAdminUserList",
+        url: this.baseUrl + "user/getAdminUserList",
         type: "get",
         dataType: "json",
         data: JSON.stringify({
-         admintoken:localStorage.getItem('admintoken')
+          admintoken: localStorage.getItem('admintoken')
         }),
         contentType: 'application/json; charset=utf-8',
         success: (data: any) => {
-          console.log( 'data is', data);
+          console.log('data is', data);
           this.mainArray = data['data']['data'];
           this.array = this.mainArray;
-          this.array.reverse();
+          // this.array.reverse();
           for (var i = 0; i < this.array.length; i++) {
             this.char = this.array[i].service;
             if (this.char == 'basic' || this.char == 'Basic' || this.char == 'BASIC') {
@@ -101,32 +96,14 @@ export class UserListComponent implements OnInit {
           // this.router.navigate(['home'])
 
         },
-        error: (jqXHR, textStatus, errorThrown) => {
-          this.getErrorMessageserver = "unAuthorized User";
+        error: ( textStatus) => {
           console.log('error data ', textStatus);
         },
 
 
       });
 
-      // this.httpService.getRequest('user/getAdminUserList').subscribe(data => {
-      //   this.mainArray = data['data']['data'];
-      //   this.array = this.mainArray;
-      //   console.log(this.array);
-      //   for (var i = 0; i < this.array.length; i++) {
-      //     this.char = this.array[i].service;
-      //     if (this.char == 'basic' || this.char == 'Basic' || this.char == 'BASIC') {
-      //       this.basic++;
-      //     } else {
-      //       this.advance++;
-      //     }
-      //   }
-      //   console.log('basic user is ', this.basic, ' advane user is', this.advance);
-
-
-      // }, err => {
-      //   console.log('error in get user list');
-      // });
+     
     } catch (error) {
       console.log('error in dashboard');
     }

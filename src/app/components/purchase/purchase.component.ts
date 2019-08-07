@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminServiceService } from '../../services/admin/admin-service.service'
+import { environment } from '../../../environments/environment'
 declare var $: any;
 @Component({
   selector: 'app-purchase',
@@ -8,8 +8,8 @@ declare var $: any;
 })
 export class PurchaseComponent implements OnInit {
   orderList: any;
-
-  constructor(private adminService: AdminServiceService) { }
+  baseUrl = environment.baseUrl;
+  constructor() { }
 
   ngOnInit() {
     this.getAllPlacedOrders()
@@ -17,7 +17,7 @@ export class PurchaseComponent implements OnInit {
 
   getAllPlacedOrders() {
     $.ajax({
-      url: "http://34.213.106.173/api/productcarts/userCartList",
+      url: this.baseUrl + "productcarts/userCartList",
       type: "get",
       dataType: "json",
       headers: {
@@ -43,7 +43,7 @@ export class PurchaseComponent implements OnInit {
       cartId: data1.id
     }
     $.ajax({
-      url: "http://34.213.106.173/api/productcarts/adminCompleteOrder/",
+      url: this.baseUrl + "productcarts/adminCompleteOrder/",
       type: "post",
       dataType: "json",
       headers: {
@@ -65,22 +65,14 @@ export class PurchaseComponent implements OnInit {
 
 
     });
-    // this.adminService.completeOrder(data).subscribe(response => {
-    //   console.log(response);
-    //   this.getAllPlacedOrders();
-
-    // }, error => {
-    //   console.log("  error to accpet order", error);
-
-    // })
-
+  
   }
 
 
 
-  rejectOrder(order){
+  rejectOrder(order) {
     $.ajax({
-      url: "http://34.213.106.173/api/productcarts/adminCancelOrder/",
+      url: this.baseUrl + "productcarts/adminCancelOrder/",
       type: "post",
       dataType: "json",
       headers: {

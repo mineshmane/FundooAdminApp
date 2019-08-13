@@ -27,7 +27,7 @@ export class PurchaseComponent implements OnInit {
       success: (data: any) => {
         console.log('data is', data);
         this.orderList = data['data'];
-        this.orderList.reverse();
+        // this.orderList.reverse();
       },
       error: (textStatus, ) => {
         console.log('error data ', textStatus);
